@@ -6,6 +6,5 @@ class Film
 		@director = nil
 		@likes = 0
 		@dislikes = 0
-	end #end of initialize
-
-end #end of class
+	end 
+end 

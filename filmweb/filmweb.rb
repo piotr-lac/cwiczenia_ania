@@ -16,25 +16,51 @@ require "./filmbase.rb"
 require "./user.rb"
 require "./film.rb"
 
+
+#tworzymy instancje class:
 my_base = FilmBase.new
 me = User.new("Piotr")
-he = User.new("Michal")
-film_1 = Film.new("Mis")
-film_2 = Film.new("Rozmowy kontrolowane")
+michael = User.new("Michal")
+film_1 = Film.new("Matrix")
+film_2 = Film.new("Matrix Rewolucje")
+film_3 = Film.new("Matrix Reaktywacja")
 
+#dodajemy tylko jednego uzytkownika do bazy użytkowników
 my_base.add_user(me)
 
+# zarejestrowany w bazie uzytkownikow uzytkownik dodaje film do bazy filmow
 me.adds_film(my_base,film_1)
+me.adds_film(my_base,film_2)
+
+# niezarejestrowany w bazie uzytkonk probuje dodac film do bazy 
+michael.adds_film(my_base,film_3) # => "Sorry. Uknown user can not add any film to the webbase"
+
+# baza nie zawiera tego ostatnigo filmu tylko dwa poprzednio dodane
 p my_base.film_base
 
+# zarejestrowany user dodaje ostatni trzeci film do bazy
+me.adds_film(my_base,film_3)
+
+#baza filmow zawiera teraz wszyskie trzy filmy
+p my_base.film_base.length #=> 3
+
+# zarejestrowany uzytkonik lubi film
 me.likes(my_base,film_1)
-p my_base.film_base
 
-me.likes(my_base,film_2)
+# niezarejestrowany uzytkonik probuje polubic film. Niepowodzenie
+michael.likes(my_base,film_2) #=> "Sorry, Uknown user can not like film or film is not in our webbase"
 
-me.dislikes(my_base,film_1)
-p my_base.film_base
+# tak samo dziala dla dislike'ow
+me.dislikes(my_base,film_2)
 
-he.likes(my_base,film_1)
+# baza moze pokazac najlepszy film. Jezeli jest kilka z ta sama iloscia like'ow to pokaze je wszystkie
+my_base.best
 
-# my_base.best
+# tak samo dziala dla najgorszego filmu
+my_base.worst
+
+# pokazanie posegregowanych filmow wg ilosci like'ow
+my_base.ranking_top
+
+# pokzanie filmow najnowszych w bazie, czyli kolejnosc odwrotna do dodoawania w bazie
+my_base.newest
