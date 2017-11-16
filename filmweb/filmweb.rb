@@ -18,10 +18,23 @@ require "./film.rb"
 
 my_base = FilmBase.new
 me = User.new("Piotr")
+he = User.new("Michal")
 film_1 = Film.new("Mis")
+film_2 = Film.new("Rozmowy kontrolowane")
 
 my_base.add_user(me)
 
 me.adds_film(my_base,film_1)
-# p my_base.film_base
-# p my_base.user_base.include?(me)
+p my_base.film_base
+
+me.likes(my_base,film_1)
+p my_base.film_base
+
+me.likes(my_base,film_2)
+
+me.dislikes(my_base,film_1)
+p my_base.film_base
+
+he.likes(my_base,film_1)
+
+# my_base.best

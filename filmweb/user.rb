@@ -4,16 +4,16 @@ class User
 		@nickname = nickname
 	end #end of initialize
 
-	def likes(film)
-		film.likes += 1
+	def likes(base,film)
+		base.like_film(self,film)
 	end #end of likes
 
-	def dislikes(film)
-		film.dislikes +=1
+	def dislikes(base,film)
+		base.dislike_film(self,film)
 	end #end of dislikes
 
 	def adds_film(base,film)
-		base.add_film(itself,film)
+		base.add_film(self,film)
 	end #end of adds_film
 end #end of user
 
