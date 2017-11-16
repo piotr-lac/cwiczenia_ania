@@ -12,7 +12,7 @@ class FilmBase
 	end #end of add_user
 
 	def add_film(user,film)
-		if @film_base.include?(user.nickname)
+		if @film_base.include?(user)
 			adding_film(film)
 		else
 			puts "Uknown user can not add any film to the filmbase"
